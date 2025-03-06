@@ -62,7 +62,7 @@ async def read_movies(
     )
 
 
-@router.get("/movies/{film_id}", response_model=MovieDetailResponseSchema)
+@router.get("/movies/{film_id}/", response_model=MovieDetailResponseSchema)
 async def get_movie(film_id: int, db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(MovieModel).where(MovieModel.id == film_id))
     movie = result.scalar_one_or_none()
